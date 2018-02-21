@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import '../assets/App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class AppComponent extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log(this.props.value);
+  }
+
+  renderData() {
+    return this.props.value.map(function(item) {
+      return (<tr>
+            <td>{item.id}</td>
+            <td>{item.name}</td>
+            <td>{item.source}</td>
+            <td><button className="btn btn-success">Edit</button>
+            <button className="btn btn-warning">Delete</button>
+            </td>
+        </tr>)
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <table className="table table-bordered table-responsive">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Source</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>  
+            {this.renderData()}      
+          </tbody>
+        </table> 
       </div>
     );
   }
