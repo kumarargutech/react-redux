@@ -2,29 +2,44 @@ import React, { Component } from 'react';
 import '../assets/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+
 class AppComponent extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.value);
+    this.renderData = this.renderData.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
+  handleEdit(index, itemID) {
+    
+  }
+   
   renderData() {
-    return this.props.value.map(function(item) {
-      return (<tr>
+    let li = this.props.value.map((item,index) => {
+      return (<tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.name}</td>
             <td>{item.source}</td>
-            <td><button className="btn btn-success">Edit</button>
-            <button className="btn btn-warning">Delete</button>
+            <td>
+              <button className="btn btn-success" onClick={(event) => this.handleEdit(index,item.id)}>Edit</button>
+              <button className="btn btn-warning">Delete</button>
             </td>
         </tr>)
     })
+    return li;
   }
 
+  handlclikc = function() {
+    console.log('welcome');
+    debugger;
+  }
+
+  
   render() {
     return (
       <div className="App">
+        <button onClick={this.handlclikc}>click</button>
         <table className="table table-bordered table-responsive">
           <thead>
             <tr>

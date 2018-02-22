@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getData } from '../actions/personal';
 import AppComponent from '../components/AppComponent';
 
 class App extends Component {
@@ -16,14 +18,27 @@ class App extends Component {
         'name' : 'Santhosh',
         'source' : 'ReactJS'
      }]
-    };
+    };    
+  }
+
+  componentWillMount() {
+    this.props.dispatch(getData());
   }
 
   render() {
     return (
-      <AppComponent value={this.state.data} />
+      <div>
+         <AppComponent value={this.state.data} />
+      </div>
     );
   }
 }
 
-export default App;
+export default connect((state) => {
+  const personalData = state.setPersonalData;  
+  
+  return {
+      personalData      
+    };
+
+  })(App);

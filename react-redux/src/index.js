@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,10 +17,10 @@ var bootstrap = require('bootstrap');
 window.bootstrap = bootstrap; 
 
 ReactDOM.render(
-    <Provider store={createStore(applyMiddleware())}>
+    <Provider store={createStore(applyMiddleware(thunkMiddleware,createLogger))}>
           <BrowserRouter basename="/">
             <App />
           </BrowserRouter>
-  </Provider>,    
+    </Provider>,    
   document.getElementById('root'));
   registerServiceWorker();
