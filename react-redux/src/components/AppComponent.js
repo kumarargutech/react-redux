@@ -9,25 +9,35 @@ class AppComponent extends Component {
     super(props);
     this.renderData = this.renderData.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleEdit = this.handleDelete.bind(this);
   }
 
   handleEdit(index, itemID) {
-    
+    console.log(index);
+    console.log(itemID);
+  }
+
+  handleDelete(index, itemID) {
+    console.log(index);
+    console.log(itemID);
   }
    
   renderData() {
-    let li = this.props.value.map((item,index) => {
+    let dataRecord;
+    if(Array.isArray(this.props.value.data) && this.props.value.data.length > 0) {
+      dataRecord = this.props.value.data.map((item,index) => {
       return (<tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.name}</td>
             <td>{item.source}</td>
             <td>
               <button className="btn btn-success" onClick={(event) => this.handleEdit(index,item.id)}>Edit</button>
-              <button className="btn btn-warning">Delete</button>
+              <button className="btn btn-warning" onClick={(event) => this.handleDelete(index,item.id)}>Delete</button>
             </td>
         </tr>)
     })
-    return li;
+  }
+    return dataRecord;
   }
 
   handlclikc = function() {

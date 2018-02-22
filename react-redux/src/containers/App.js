@@ -7,28 +7,18 @@ class App extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {
-       data : [{
-          'id' : 1,
-          'name' : 'Kumar',
-          'source' : 'ReactJS'
-       },
-       {
-        'id' : 2,
-        'name' : 'Santhosh',
-        'source' : 'ReactJS'
-     }]
+    this.state = {       
     };    
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(getData());
   }
 
   render() {
     return (
       <div>
-         <AppComponent value={this.state.data} />
+         <AppComponent value={this.props.personalData} />
       </div>
     );
   }
@@ -36,9 +26,7 @@ class App extends Component {
 
 export default connect((state) => {
   const personalData = state.setPersonalData;  
-  
   return {
       personalData      
-    };
-
-  })(App);
+  };
+})(App);
