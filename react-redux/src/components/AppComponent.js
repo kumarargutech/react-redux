@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../assets/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-
 class AppComponent extends Component {
 
   constructor(props) {
@@ -40,16 +39,9 @@ class AppComponent extends Component {
     return dataRecord;
   }
 
-  handlclikc = function() {
-    console.log('welcome');
-    debugger;
-  }
-
-  
   render() {
     return (
       <div className="App">
-        <button onClick={this.handlclikc}>click</button>
         <table className="table table-bordered table-responsive">
           <thead>
             <tr>
