@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import renderEditData from '../actions/personal';
 import '../assets/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -11,9 +12,8 @@ class AppComponent extends Component {
     this.handleEdit = this.handleDelete.bind(this);
   }
 
-  handleEdit(index, itemID) {
-    console.log(index);
-    console.log(itemID);
+  handleEdit(index, item) {
+    this.props.dispatch(renderEditData(item));
   }
 
   handleDelete(index, itemID) {
@@ -30,7 +30,7 @@ class AppComponent extends Component {
             <td>{item.name}</td>
             <td>{item.source}</td>
             <td>
-              <button className="btn btn-success" onClick={(event) => this.handleEdit(index,item.id)}>Edit</button>
+              <button className="btn btn-success" onClick={(event) => this.handleEdit(index,item)}>Edit</button>
               <button className="btn btn-warning" onClick={(event) => this.handleDelete(index,item.id)}>Delete</button>
             </td>
         </tr>)
